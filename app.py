@@ -1,4 +1,3 @@
-
 import streamlit as st
 
 # Application Header
@@ -32,9 +31,9 @@ questions_answers = {
 # User Input
 user_question = st.text_input("Enter your question or pick an example:")
 
-# Question Suggestions
+# Question Suggestions (Scrollable)
 st.markdown("### Example Questions")
-if st.button("Show Example Questions"):
+with st.expander("Click to view example questions"):
     for question in questions_answers.keys():
         st.markdown(f"• {question}")
 
@@ -42,3 +41,7 @@ if st.button("Show Example Questions"):
 if user_question:
     answer = questions_answers.get(user_question.strip(), "Sorry, I don't have an answer for that question.")
     st.markdown(f"**Answer:** {answer}")
+
+# Footer
+st.markdown("---")
+st.markdown("### Developed by mak3.15")
