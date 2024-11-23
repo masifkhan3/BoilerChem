@@ -29,15 +29,16 @@ questions_answers = {
 }
 
 # User Input
-user_question = st.text_input("Enter your question or pick an example:")
-
-# Question Suggestions (Scrollable)
-st.markdown("### Example Questions")
-with st.expander("Click to view example questions"):
-    for question in questions_answers.keys():
-        st.markdown(f"• {question}")
+st.markdown("### Enter your question or pick from examples:")
+options = ["Type your own question"] + list(questions_answers.keys())
+selected_question = st.selectbox("Scroll through the examples or type your own question:", options)
 
 # Display Answer
+if selected_question != "Type your own question":
+    user_question = selected_question
+else:
+    user_question = st.text_input("Type your question below:")
+
 if user_question:
     answer = questions_answers.get(user_question.strip(), "Sorry, I don't have an answer for that question.")
     st.markdown(f"**Answer:** {answer}")
